@@ -15,4 +15,4 @@ A simple sinatra app you can use as a base to create new web apps.
 
 ## Run tests
 
-1.run `rspec`
+1. run `rspec`
