@@ -4,6 +4,6 @@ class Greeter
   end
 
   def say_hi
-    "Hi #{@name}!"
+    "Hello there!"
   end
 end
