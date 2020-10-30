@@ -1,5 +1,13 @@
-<%= @greeter.say_hi %>
-<h1>"What's your name?</h1>
-<form action="/happy_birthday" method="post">
-<input type="text" name="name">
-<input type="submit" value="Submit">
+<form action="/charge" method="post" class="payment">
+  <article>
+    <label class="amount">
+      <span>Amount $5.00</span>
+    </label>
+  </article>
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= settings.publishable_key %>"
+          data-description="You bnb statement"
+          data-amount="500"
+          data-locale="auto">
+    </script>
+</form>
