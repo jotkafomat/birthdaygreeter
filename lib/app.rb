@@ -2,14 +2,13 @@ require 'sinatra/base'
 require 'sinatra'
 require_relative "./model/greeter"
 require 'stripe'
-
+ENV['SECRET_KEY'] = "sk_test_51HhnLmJgx7WFG8VYXHIgNqMgeJZvwsPeMD6PYKEnDgEXwaH21498gHqLBcIZjSdonaUiKY8Z58JTijArSB341KgW0082E8WCqt"
 class SampleApp < Sinatra::Base
 enable :sessions
-
 set :publishable_key, ENV['PUBLISHABLE_KEY']
 set :secret_key, ENV['SECRET_KEY']
 
-Stripe.api_key = settings.publishable_key
+Stripe.api_key = settings.secret_key
 
 error Stripe::CardError do
   env['sinatra.error'].message
@@ -25,14 +24,14 @@ end
     @amount = 500
 
     customer = Stripe::Customer.create({
-      email: 'k-j@xl.wp.pl',
+      email: params[:email],
       source: params[:stripeToken],
     })
 
     charge = Stripe::Charge.create({
       amount: @amount,
       description: 'Sinatra Charge',
-      currency: 'usd',
+      currency: 'gbp',
       customer: customer.id,
     })
     redirect '/success'
